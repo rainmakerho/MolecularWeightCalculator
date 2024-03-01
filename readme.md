@@ -14,7 +14,7 @@ It allows you to input a chemical formula and computes the total molecular weigh
 You can install the Molecular Mass Calculator library via NuGet Package Manager Console:
 
 ```bash
-Install-Package MolecularMassCalculator
+NuGet\Install-Package MolecularWeightCalculator
 ```
 
 ## Usage
