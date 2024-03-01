@@ -141,7 +141,7 @@ namespace MolecularWeightCalculator
         {
             _logger = logger;
         }
-        public double ComputeMass(string expression)
+        public object ComputeMass(string expression)
         {
             _logger?.LogDebug($"start Compute:{expression}");
             var ec = Expression.Compile(expression, false);
@@ -156,7 +156,7 @@ namespace MolecularWeightCalculator
                 double paramValue = CalcMolecularFormulaMass(param);
                 e.Parameters[param] = paramValue;
             }
-            double result = (double)e.Evaluate();
+            var result = e.Evaluate();
             _logger?.LogDebug($"{expression}=>{result}");
             return result;
         }
@@ -173,10 +173,21 @@ namespace MolecularWeightCalculator
             {
                 string element = match.Groups[1].Value;
                 int count = match.Groups[2].Value == "" ? 1 : int.Parse(match.Groups[2].Value);
-                var atomicWeight = _MolecularWeights[element];
-                var formulaWeight = atomicWeight * count;
-                _logger?.LogDebug($"{match.Value}=>{atomicWeight}*{count}={formulaWeight}");
-                totalFormulaWeight += formulaWeight;
+                try
+                {
+                    var atomicWeight = _MolecularWeights[element];
+                    var formulaWeight = atomicWeight * count;
+                    _logger?.LogDebug($"{match.Value}=>{atomicWeight}*{count}={formulaWeight}");
+                    totalFormulaWeight += formulaWeight;
+                }
+                catch(KeyNotFoundException)
+                {
+                    throw new KeyNotFoundException($"'{element}' was not present in the Periodic Table");
+                }catch(Exception)
+                {
+                    throw;
+                }
+                
             }
             _logger?.LogDebug($"{formula}=>{totalFormulaWeight}");
             return totalFormulaWeight;

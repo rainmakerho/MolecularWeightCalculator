@@ -23,33 +23,44 @@ Here's how you can use the library to calculate the molecular weight of a chemic
 ```csharp
 var molecularMath = new MolecularMath();
 string exp1 = "CO2";
-double exp1Result = molecularMath.ComputeMass(exp1);
+var exp1Result = molecularMath.ComputeMass(exp1);
 Console.WriteLine($"{exp1}=>{exp1Result}");
 //CO2=>44.0095
 
 string exp2 = "CaCO3";
-double exp2Result = molecularMath.ComputeMass(exp2);
+var exp2Result = molecularMath.ComputeMass(exp2);
 Console.WriteLine($"{exp2}=>{exp2Result}");
 //CaCO3=>100.0869
 
 string exp3 = "CO2 / CaCO3";
-double exp3Result = molecularMath.ComputeMass(exp3);
+var exp3Result = molecularMath.ComputeMass(exp3);
 Console.WriteLine($"{exp3}=>{exp3Result}");
 //CO2 / CaCO3=>0.43971288949902537
 
 string exp4 = "C2H2 +2.5 * O2";
-double exp4Result = molecularMath.ComputeMass(exp4);
+var exp4Result = molecularMath.ComputeMass(exp4);
 Console.WriteLine($"{exp4}=>{exp4Result}");
 //C2H2 +2.5 * O2=>106.03428
 
 
 string exp5 = "2*CO2/C2H2";
-double exp5Result = molecularMath.ComputeMass(exp5);
+var exp5Result = molecularMath.ComputeMass(exp5);
 Console.WriteLine($"{exp5}=>{exp5Result}");
 //2*CO2/C2H2=>3.380499038302004
 
+string exp6 = "1*2*3*4";
+var exp6Result = molecularMath.ComputeMass(exp6);
+Console.WriteLine($"{exp6}=>{exp6Result}");
+//1*2*3*4=>24
+
+string exp7 = "CaCO3 * A2 + B3";
+//var exp7Result = molecularMath.ComputeMass(exp7);
+//Console.WriteLine($"{exp7}=>{exp7Result}");
+//KeyNotFoundException: 'A' was not present in the Periodic Table
+
 ```
 
+## [ChangeLog](CHANGELOG.md)
 
 ## Contributing
 Contributions are welcome! 

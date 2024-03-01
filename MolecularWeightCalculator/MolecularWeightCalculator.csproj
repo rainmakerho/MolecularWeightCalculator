@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <VersionPrefix>1.0.1</VersionPrefix>
+	  <VersionPrefix>1.0.2</VersionPrefix>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Copyright></Copyright>
 	  <PackageIcon>icon.png</PackageIcon>
@@ -15,8 +15,10 @@ It allows you to input a chemical formula and computes the total molecular weigh
 	  <RepositoryUrl>https://github.com/rainmakerho/MolecularWeightCalculator</RepositoryUrl>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <PackageProjectUrl>https://github.com/rainmakerho/MolecularWeightCalculator</PackageProjectUrl>
-	  <PackageReleaseNotes>v 1.0.0
-calculating the molecular mass of chemical compounds
+	  <PackageReleaseNotes>## 1.0.2
+### Bug Fixes
+* change ComputeMass method return type from double to object
+
 </PackageReleaseNotes>
   </PropertyGroup>
 
