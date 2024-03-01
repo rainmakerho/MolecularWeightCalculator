@@ -13,9 +13,18 @@
 It allows you to input a chemical formula and computes the total molecular weight by summing up the atomic weights of the constituent elements.</Description>
 	  <Authors>rainmaker_ho@gss.com.tw</Authors>
 	  <RepositoryUrl>https://github.com/rainmakerho/MolecularWeightCalculator</RepositoryUrl>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
+	  <PackageProjectUrl>https://github.com/rainmakerho/MolecularWeightCalculator</PackageProjectUrl>
+	  <PackageReleaseNotes>v 1.0.0
+calculating the molecular mass of chemical compounds
+</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
     <None Include="..\readme.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
