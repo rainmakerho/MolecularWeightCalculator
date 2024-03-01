@@ -132,13 +132,18 @@ namespace MolecularWeightCalculator
                 };
 
         private ILogger<MolecularMath> _logger;
+
+        public MolecularMath()
+        {
+            
+        }
         public MolecularMath(ILogger<MolecularMath> logger)
         {
             _logger = logger;
         }
         public double ComputeMass(string expression)
         {
-            _logger.LogDebug($"start Compute:{expression}");
+            _logger?.LogDebug($"start Compute:{expression}");
             var ec = Expression.Compile(expression, false);
             ParameterExtractionVisitor visitor = new ParameterExtractionVisitor();
             ec.Accept(visitor);
@@ -147,13 +152,12 @@ namespace MolecularWeightCalculator
             var e = new Expression(ec);
             foreach (var param in extractedParameters)
             {
-                //Console.WriteLine(param);
-                _logger.LogDebug(param);
+                _logger?.LogDebug(param);
                 double paramValue = CalcMolecularFormulaMass(param);
                 e.Parameters[param] = paramValue;
             }
             double result = (double)e.Evaluate();
-            _logger.LogDebug($"{expression}=>{result}");
+            _logger?.LogDebug($"{expression}=>{result}");
             return result;
         }
 
@@ -171,10 +175,10 @@ namespace MolecularWeightCalculator
                 int count = match.Groups[2].Value == "" ? 1 : int.Parse(match.Groups[2].Value);
                 var atomicWeight = _MolecularWeights[element];
                 var formulaWeight = atomicWeight * count;
-                _logger.LogDebug($"{match.Value}=>{atomicWeight}*{count}={formulaWeight}");
+                _logger?.LogDebug($"{match.Value}=>{atomicWeight}*{count}={formulaWeight}");
                 totalFormulaWeight += formulaWeight;
             }
-            _logger.LogDebug($"{formula}=>{totalFormulaWeight}");
+            _logger?.LogDebug($"{formula}=>{totalFormulaWeight}");
             return totalFormulaWeight;
         }
     }
