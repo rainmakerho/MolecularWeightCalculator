@@ -9,126 +9,128 @@ namespace MolecularWeightCalculator
 {
     public class MolecularMath
     {
+        //https://iupac.org/what-we-do/periodic-table-of-elements/
         private static IReadOnlyDictionary<string, double> _MolecularWeights
             = new Dictionary<string, double>
                {
-                   {"H", 1.00794}, //Hydrogen
-                    {"He", 4.002602}, //Helium
-                    {"Li", 6.941}, //Lithium
-                    {"Be", 9.012182}, //Beryllium
-                    {"B", 10.811}, //Boron
-                    {"C", 12.0107}, //Carbon
-                    {"N", 14.0067}, //Nitrogen
-                    {"O", 15.9994}, //Oxygen
-                    {"F", 18.9984032}, //Fluorine
-                    {"Ne", 20.1797}, //Neon
-                    {"Na", 22.98976928}, //Sodium
-                    {"Mg", 24.3050}, //Magnesium
-                    {"Al", 26.9815386}, //Aluminum
+                   {"H", 1.0080}, //Hydrogen
+                    {"He", 4.0026}, //Helium
+                    {"Li", 6.94}, //Lithium
+                    {"Be", 9.0122}, //Beryllium
+                    {"B", 10.81}, //Boron
+                    {"C", 12.011}, //Carbon
+                    {"N", 14.007}, //Nitrogen
+                    {"O", 15.999}, //Oxygen
+                    {"F", 18.998}, //Fluorine
+                    {"Ne", 20.180}, //Neon
+                    {"Na", 22.990}, //Sodium
+                    {"Mg", 24.305}, //Magnesium
+                    {"Al", 26.982}, //Aluminum
                     {"Si", 28.0855}, //Silicon
-                    {"P", 30.973762}, //Phosphorus
-                    {"S", 32.065}, //Sulfur
-                    {"Cl", 35.453}, //Chlorine
-                    {"Ar", 39.948}, //Argon
-                    {"K", 39.0983}, //Potassium
+                    {"P", 30.974}, //Phosphorus
+                    {"S", 32.06}, //Sulfur
+                    {"Cl", 35.45}, //Chlorine
+                    {"Ar", 39.95}, //Argon
+                    {"K", 39.098}, //Potassium
                     {"Ca", 40.078}, //Calcium
-                    {"Sc", 44.955912}, //Scandium
+                    {"Sc", 44.956}, //Scandium
                     {"Ti", 47.867}, //Titanium
-                    {"V", 50.9415}, //Vanadium
-                    {"Cr", 51.9961}, //Chromium
-                    {"Mn", 54.938045}, //Manganese
+                    {"V", 50.942}, //Vanadium
+                    {"Cr", 51.996}, //Chromium
+                    {"Mn", 54.938}, //Manganese
                     {"Fe", 55.845}, //Iron
-                    {"Co", 58.933195}, //Cobalt
-                    {"Ni", 58.6934}, //Nickel
+                    {"Co", 58.933}, //Cobalt
+                    {"Ni", 58.693}, //Nickel
                     {"Cu", 63.546}, //Copper
-                    {"Zn", 65.409}, //Zinc
+                    {"Zn", 65.38}, //Zinc
                     {"Ga", 69.723}, //Gallium
-                    {"Ge", 72.64}, //Germanium
-                    {"As", 74.92160}, //Arsenic
-                    {"Se", 78.96}, //Selenium
+                    {"Ge", 72.630}, //Germanium
+                    {"As", 74.922}, //Arsenic
+                    {"Se", 78.971}, //Selenium
                     {"Br", 79.904}, //Bromine
                     {"Kr", 83.798}, //Krypton
-                    {"Rb", 85.4678}, //Rubidium
+                    {"Rb", 85.468}, //Rubidium
                     {"Sr", 87.62}, //Strontium
-                    {"Y", 88.90585}, //Yttrium
+                    {"Y", 88.906}, //Yttrium
                     {"Zr", 91.224}, //Zirconium
-                    {"Nb", 92.90638}, //Niobium
-                    {"Mo", 95.94}, //Molybdenum
-                    {"Tc", 98.9063}, //Technetium
+                    {"Nb", 92.906}, //Niobium
+                    {"Mo", 95.95}, //Molybdenum
+                    {"Tc", 97}, //Technetium
                     {"Ru", 101.07}, //Ruthenium
-                    {"Rh", 102.90550}, //Rhodium
+                    {"Rh", 102.91}, //Rhodium
                     {"Pd", 106.42}, //Palladium
-                    {"Ag", 107.8682}, //Silver
-                    {"Cd", 112.411}, //Cadmium
-                    {"In", 114.818}, //Indium
+                    {"Ag", 107.87}, //Silver
+                    {"Cd", 112.41}, //Cadmium
+                    {"In", 114.82}, //Indium
                     {"Sn", 118.710}, //Tin
                     {"Sb", 121.760}, //Antimony
                     {"Te", 127.60}, //Tellurium
-                    {"I", 126.90447}, //Iodine
-                    {"Xe", 131.293}, //Xenon
-                    {"Cs", 132.9054519}, //Caesium
-                    {"Ba", 137.327}, //Barium
-                    {"La", 138.90547}, //Lanthanum
-                    {"Ce", 140.116}, //Cerium
-                    {"Pr", 140.90765}, //Praseodymium
-                    {"Nd", 144.242}, //Neodymium
-                    {"Pm", 146.9151}, //Promethium
+                    {"I", 126.90}, //Iodine
+                    {"Xe", 131.29}, //Xenon
+                    {"Cs", 132.91}, //Caesium
+                    {"Ba", 137.33}, //Barium
+                    {"La", 138.91}, //Lanthanum
+                    {"Ce", 140.12}, //Cerium
+                    {"Pr", 140.91}, //Praseodymium
+                    {"Nd", 144.24}, //Neodymium
+                    {"Pm", 145}, //Promethium
                     {"Sm", 150.36}, //Samarium
-                    {"Eu", 151.964}, //Europium
+                    {"Eu", 151.96}, //Europium
                     {"Gd", 157.25}, //Gadolinium
-                    {"Tb", 158.92535}, //Terbium
-                    {"Dy", 162.500}, //Dysprosium
-                    {"Ho", 164.93032}, //Holmium
-                    {"Er", 167.259}, //Erbium
-                    {"Tm", 168.93421}, //Thulium
-                    {"Yb", 173.04}, //Ytterbium
-                    {"Lu", 174.967}, //Lutetium
+                    {"Tb", 158.93}, //Terbium
+                    {"Dy", 162.50}, //Dysprosium
+                    {"Ho", 164.93}, //Holmium
+                    {"Er", 167.26}, //Erbium
+                    {"Tm", 168.93}, //Thulium
+                    {"Yb", 173.05}, //Ytterbium
+                    {"Lu", 174.97}, //Lutetium
                     {"Hf", 178.49}, //Hafnium
-                    {"Ta", 180.9479}, //Tantalum
+                    {"Ta", 180.95}, //Tantalum
                     {"W", 183.84}, //Tungsten
-                    {"Re", 186.207}, //Rhenium
+                    {"Re", 186.21}, //Rhenium
                     {"Os", 190.23}, //Osmium
-                    {"Ir", 192.217}, //Iridium
-                    {"Pt", 195.084}, //Platinum
-                    {"Au", 196.966569}, //Gold
+                    {"Ir", 192.22}, //Iridium
+                    {"Pt", 195.08}, //Platinum
+                    {"Au", 196.97}, //Gold
                     {"Hg", 200.59}, //Mercury
-                    {"Tl", 204.3833}, //Thallium
+                    {"Tl", 204.38}, //Thallium
                     {"Pb", 207.2}, //Lead
-                    {"Bi", 208.98040}, //Bismuth
-                    {"Po", 208.9824}, //Polonium
-                    {"At", 209.9871}, //Astatine
-                    {"Rn", 222.0176}, //Radon
-                    {"Fr", 223.0197}, //Francium
-                    {"Ra", 226.0254}, //Radium
-                    {"Ac", 227.0278}, //Actinium
-                    {"Th", 232.03806}, //Thorium
-                    {"Pa", 231.03588}, //Protactinium
-                    {"U", 238.02891}, //Uranium
-                    {"Np", 237.0482}, //Neptunium
-                    {"Pu", 244.0642}, //Plutonium
-                    {"Am", 243.0614}, //Americium
-                    {"Cm", 247.0703}, //Curium
-                    {"Bk", 247.0703}, //Berkelium
-                    {"Cf", 251.0796}, //Californium
-                    {"Es", 252.0829}, //Einsteinium
-                    {"Fm", 257.0951}, //Fermium
-                    {"Md", 258.0986}, //Mendelevium
-                    {"No", 259.1009}, //Nobelium
-                    {"Lr", 260.1053}, //Lawrencium
-                    {"Rf", 261.1087}, //Rutherfordium
-                    {"Db", 262.1138}, //Dubnium
-                    {"Sg", 263.1182}, //Seaborgium
-                    {"Bh", 262.1229}, //Bohrium
-                    {"Hs", 265}, //Hassium
-                    {"Mt", 266}, //Meitnerium
-                    {"Ds", 269}, //Darmstadtium
-                    {"Rg", 272}, //Roentgenium
-                    {"Uub", 285}, //Ununbium
-                    {"Uut", 284}, //Ununtrium
-                    {"Uuq", 289}, //Ununquadium
-                    {"Uup", 288}, //Ununpentium
-                    {"Uuh", 292}, //Ununhexium
-                    {"Uuo", 294}, //Ununoctium
+                    {"Bi", 208.98}, //Bismuth
+                    {"Po", 209}, //Polonium
+                    {"At", 210}, //Astatine
+                    {"Rn", 222}, //Radon
+                    {"Fr", 223}, //Francium
+                    {"Ra", 226}, //Radium
+                    {"Ac", 227}, //Actinium
+                    {"Th", 232.04}, //Thorium
+                    {"Pa", 231.04}, //Protactinium
+                    {"U", 238.03}, //Uranium
+                    {"Np", 237}, //Neptunium
+                    {"Pu", 244}, //Plutonium
+                    {"Am", 243}, //Americium
+                    {"Cm", 247}, //Curium
+                    {"Bk", 247}, //Berkelium
+                    {"Cf", 251}, //Californium
+                    {"Es", 252}, //Einsteinium
+                    {"Fm", 257}, //Fermium
+                    {"Md", 258}, //Mendelevium
+                    {"No", 259}, //Nobelium
+                    {"Lr", 262}, //Lawrencium
+                    {"Rf", 267}, //Rutherfordium
+                    {"Db", 268}, //Dubnium
+                    {"Sg", 269}, //Seaborgium
+                    {"Bh", 270}, //Bohrium
+                    {"Hs", 269}, //Hassium
+                    {"Mt", 277}, //Meitnerium
+                    {"Ds", 281}, //Darmstadtium
+                    {"Rg", 282}, //Roentgenium
+                    {"Cn", 285}, //Ununbium
+                    {"Nh", 286}, //Ununtrium
+                    {"Fl", 290}, //Ununquadium
+                    {"Mc", 290}, //Ununpentium
+                    {"Lv", 293}, //Ununhexium
+                    {"Ts", 294}, //Ununoctium
+                    {"Og", 294},
                 };
 
         private ILogger<MolecularMath> _logger;

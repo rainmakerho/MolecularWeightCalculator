@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <VersionPrefix>1.0.2</VersionPrefix>
+	  <VersionPrefix>1.0.3</VersionPrefix>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Copyright></Copyright>
 	  <PackageIcon>icon.png</PackageIcon>
@@ -15,11 +15,14 @@ It allows you to input a chemical formula and computes the total molecular weigh
 	  <RepositoryUrl>https://github.com/rainmakerho/MolecularWeightCalculator</RepositoryUrl>
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <PackageProjectUrl>https://github.com/rainmakerho/MolecularWeightCalculator</PackageProjectUrl>
-	  <PackageReleaseNotes>## 1.0.2
-### Bug Fixes
-* change ComputeMass method return type from double to object
-
-</PackageReleaseNotes>
+	  <PackageReleaseNotes>
+		  ## 1.0.2
+		  ### Bug Fixes
+		  * change ComputeMass method return type from double to object
+		  ## 1.0.3
+		  ### Change Log
+		  * change Periodic Table from https://iupac.org/what-we-do/periodic-table-of-elements/
+	  </PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

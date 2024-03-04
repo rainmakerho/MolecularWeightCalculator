@@ -14,7 +14,7 @@ services.AddLogging(loggerBuilder =>
     loggerBuilder.ClearProviders();
     loggerBuilder.AddConsole()
     .SetMinimumLevel(LogLevel.Debug);
-}).AddTransient<MolecularMath>();
+}).AddSingleton<MolecularMath>();
 
 var serviceProvider = services.BuildServiceProvider();
 

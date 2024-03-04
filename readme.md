@@ -25,28 +25,28 @@ var molecularMath = new MolecularMath();
 string exp1 = "CO2";
 var exp1Result = molecularMath.ComputeMass(exp1);
 Console.WriteLine($"{exp1}=>{exp1Result}");
-//CO2=>44.0095
+//CO2=>44.009
 
 string exp2 = "CaCO3";
 var exp2Result = molecularMath.ComputeMass(exp2);
 Console.WriteLine($"{exp2}=>{exp2Result}");
-//CaCO3=>100.0869
+//CaCO3=>100.086
 
 string exp3 = "CO2 / CaCO3";
 var exp3Result = molecularMath.ComputeMass(exp3);
 Console.WriteLine($"{exp3}=>{exp3Result}");
-//CO2 / CaCO3=>0.43971288949902537
+//CO2 / CaCO3=>0.43971184781088263
 
 string exp4 = "C2H2 +2.5 * O2";
 var exp4Result = molecularMath.ComputeMass(exp4);
 Console.WriteLine($"{exp4}=>{exp4Result}");
-//C2H2 +2.5 * O2=>106.03428
+//C2H2 +2.5 * O2=>106.033
 
 
 string exp5 = "2*CO2/C2H2";
 var exp5Result = molecularMath.ComputeMass(exp5);
 Console.WriteLine($"{exp5}=>{exp5Result}");
-//2*CO2/C2H2=>3.380499038302004
+//2*CO2/C2H2=>3.3803671556955224
 
 string exp6 = "1*2*3*4";
 var exp6Result = molecularMath.ComputeMass(exp6);
