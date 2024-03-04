@@ -124,20 +124,20 @@ namespace MolecularWeightCalculator
                     {"Mt", 277}, //Meitnerium
                     {"Ds", 281}, //Darmstadtium
                     {"Rg", 282}, //Roentgenium
-                    {"Cn", 285}, //Ununbium
-                    {"Nh", 286}, //Ununtrium
-                    {"Fl", 290}, //Ununquadium
-                    {"Mc", 290}, //Ununpentium
-                    {"Lv", 293}, //Ununhexium
-                    {"Ts", 294}, //Ununoctium
-                    {"Og", 294},
+                    {"Cn", 285}, //Copernicium
+                    {"Nh", 286}, //Nihonium
+                    {"Fl", 290}, //Flerovium
+                    {"Mc", 290}, //Moscovium
+                    {"Lv", 293}, //Livermorium
+                    {"Ts", 294}, //Tennessine
+                    {"Og", 294}, //Oganesson
                 };
 
         private ILogger<MolecularMath> _logger;
 
         public MolecularMath()
         {
-            
+
         }
         public MolecularMath(ILogger<MolecularMath> logger)
         {
@@ -182,14 +182,15 @@ namespace MolecularWeightCalculator
                     _logger?.LogDebug($"{match.Value}=>{atomicWeight}*{count}={formulaWeight}");
                     totalFormulaWeight += formulaWeight;
                 }
-                catch(KeyNotFoundException)
+                catch (KeyNotFoundException)
                 {
                     throw new KeyNotFoundException($"'{element}' was not present in the Periodic Table");
-                }catch(Exception)
+                }
+                catch (Exception)
                 {
                     throw;
                 }
-                
+
             }
             _logger?.LogDebug($"{formula}=>{totalFormulaWeight}");
             return totalFormulaWeight;
