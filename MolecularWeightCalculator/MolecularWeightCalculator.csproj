@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <VersionPrefix>1.0.3</VersionPrefix>
+	  <VersionPrefix>1.0.4</VersionPrefix>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Copyright></Copyright>
 	  <PackageIcon>icon.png</PackageIcon>
@@ -16,12 +16,17 @@ It allows you to input a chemical formula and computes the total molecular weigh
 	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
 	  <PackageProjectUrl>https://github.com/rainmakerho/MolecularWeightCalculator</PackageProjectUrl>
 	  <PackageReleaseNotes>
-		  ## 1.0.2
-		  ### Bug Fixes
-		  * change ComputeMass method return type from double to object
-		  ## 1.0.3
-		  ### Change Log
-		  * change Periodic Table from https://iupac.org/what-we-do/periodic-table-of-elements/
+		  ### 1.0.2
+
+		  1. fix: change ComputeMass method return type from double to object
+
+		  ### 1.0.3
+
+		  1. change Periodic Table from https://iupac.org/what-we-do/periodic-table-of-elements/
+
+		  ### 1.0.4
+
+		  1. Add filtering to only calculate the molecular weight of compounds with certain chemical elements, such as only contain C (Carbon)
 	  </PackageReleaseNotes>
   </PropertyGroup>
 

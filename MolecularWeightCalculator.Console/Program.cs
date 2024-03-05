@@ -53,10 +53,31 @@ Console.WriteLine($"{exp6}=>{exp6Result}");
 Console.WriteLine(new String('*', 29));
 
 string exp7 = "CaCO3 * A2 + B3";
-var exp7Result = molecularMath.ComputeMass(exp7);
+//var exp7Result = molecularMath.ComputeMass(exp7);
 //KeyNotFoundException: 'A' was not present in the Periodic Table
-Console.WriteLine($"{exp7}=>{exp7Result}");
+//Console.WriteLine($"{exp7}=>{exp7Result}");
+//Console.WriteLine(new String('*', 29));
+
+//calculate only contain C (Carbon)
+
+Console.WriteLine($"===== calculate only contain C (Carbon) =====");
+string calcMolecularOnly = "C";
+string[] calcMolecularOnlyArray = calcMolecularOnly.Split(',');
+string exp8 = "CaO + CO2";
+var exp8Result = molecularMath.ComputeMass(exp8, calcMolecularOnlyArray);
+Console.WriteLine($"{exp8}=>{exp8Result}");
 Console.WriteLine(new String('*', 29));
+
+string exp9 = "C2H2 +2.5*O2";
+var exp9Result = molecularMath.ComputeMass(exp9, calcMolecularOnlyArray);
+Console.WriteLine($"{exp9}=>{exp9Result}");
+Console.WriteLine(new String('*', 29));
+
+string expA = "2*CO2 + H2O";
+var expAResult = molecularMath.ComputeMass(expA, calcMolecularOnlyArray);
+Console.WriteLine($"{expA}=>{expAResult}");
+Console.WriteLine(new String('*', 29));
+
 
 Console.WriteLine($"Press any key to exit.....");
 Console.ReadKey();

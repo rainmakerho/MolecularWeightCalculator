@@ -1,13 +1,13 @@
 # Molecular Mass Weight Calculator
 
-This is a C# library for calculating the molecular mass of chemical compounds. 
+This is a C# library for calculating the molecular mass of chemical compounds.
 It allows you to input a chemical formula and computes the total molecular weight by summing up the atomic weights of the constituent elements.
 
 ## Features
 
-- Calculate the molecular weight of chemical compounds.
-- Support for standard atomic weights of elements.
-- Simple and intuitive DLL for integration into your projects.
+-   Calculate the molecular weight of chemical compounds.
+-   Support for standard atomic weights of elements.
+-   Simple and intuitive DLL for integration into your projects.
 
 ## Installation
 
@@ -18,6 +18,7 @@ NuGet\Install-Package MolecularWeightCalculator
 ```
 
 ## Usage
+
 Here's how you can use the library to calculate the molecular weight of a chemical compound:
 
 ```csharp
@@ -58,13 +59,46 @@ string exp7 = "CaCO3 * A2 + B3";
 //Console.WriteLine($"{exp7}=>{exp7Result}");
 //KeyNotFoundException: 'A' was not present in the Periodic Table
 
+
+Console.WriteLine($"===== calculate only contain C (Carbon) =====");
+string calcMolecularOnly = "C";
+string[] calcMolecularOnlyArray = calcMolecularOnly.Split(',');
+string exp8 = "CaO + CO2";
+var exp8Result = molecularMath.ComputeMass(exp8, calcMolecularOnlyArray);
+Console.WriteLine($"{exp8}=>{exp8Result}");
+//CaO + CO2=>44.009 (only CO2)
+
+string exp9 = "C2H2 +2.5*O2";
+var exp9Result = molecularMath.ComputeMass(exp9, calcMolecularOnlyArray);
+Console.WriteLine($"{exp9}=>{exp9Result}");
+//C2H2 +2.5*O2=>26.037999999999997 (Only C2H2)
+
+string expA = "2*CO2 + H2O";
+var expAResult = molecularMath.ComputeMass(expA, calcMolecularOnlyArray);
+Console.WriteLine($"{expA}=>{expAResult}");
+//2*CO2 + H2O=>88.018 (Only 2*CO2)
+
 ```
 
-## [ChangeLog](CHANGELOG.md)
+## ChangeLog
+
+### 1.0.2
+
+1. fix: change ComputeMass method return type from double to object
+
+### 1.0.3
+
+1. change Periodic Table from https://iupac.org/what-we-do/periodic-table-of-elements/
+
+### 1.0.4
+
+1. Add filtering to only calculate the molecular weight of compounds with certain chemical elements, such as only contain C (Carbon)
 
 ## Contributing
-Contributions are welcome! 
+
+Contributions are welcome!
 If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request.
 
 ## License
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)

@@ -2,8 +2,10 @@
 using NCalc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace MolecularWeightCalculator
 {
@@ -143,8 +145,16 @@ namespace MolecularWeightCalculator
         {
             _logger = logger;
         }
-        public object ComputeMass(string expression)
+
+        /// <summary>
+        /// calculate the molecular weight of compounds expression
+        /// </summary>
+        /// <param name="expression">compounds expression</param>
+        /// <param name="calculateContains">only calculate the molecular weight of compounds with certain chemical elements</param>
+        /// <returns></returns>
+        public object ComputeMass(string expression, string[] calculateContains = null)
         {
+
             _logger?.LogDebug($"start Compute:{expression}");
             var ec = Expression.Compile(expression, false);
             ParameterExtractionVisitor visitor = new ParameterExtractionVisitor();
@@ -155,7 +165,7 @@ namespace MolecularWeightCalculator
             foreach (var param in extractedParameters)
             {
                 _logger?.LogDebug(param);
-                double paramValue = CalcMolecularFormulaMass(param);
+                double paramValue = CalcMolecularFormulaMass(param, calculateContains);
                 e.Parameters[param] = paramValue;
             }
             var result = e.Evaluate();
@@ -165,15 +175,20 @@ namespace MolecularWeightCalculator
 
 
 
-        double CalcMolecularFormulaMass(string formula)
+        double CalcMolecularFormulaMass(string formula, string[] calculateContains = null)
         {
-            // 使用正則表達式匹配元素及其數量
+            // Match elements and their count using regular expressions
             string pattern = @"([A-Z][a-z]*)(\d*)";
             MatchCollection matches = Regex.Matches(formula, pattern);
             double totalFormulaWeight = 0;
+            bool isMolecularContains = false;
             foreach (Match match in matches)
             {
                 string element = match.Groups[1].Value;
+                if (calculateContains != null && calculateContains.Contains(element))
+                {
+                    isMolecularContains = true;
+                }
                 int count = match.Groups[2].Value == "" ? 1 : int.Parse(match.Groups[2].Value);
                 try
                 {
@@ -193,6 +208,12 @@ namespace MolecularWeightCalculator
 
             }
             _logger?.LogDebug($"{formula}=>{totalFormulaWeight}");
+            if (calculateContains != null && isMolecularContains==false)
+            {
+                //does not exist in the calculation list
+                _logger?.LogDebug($"{formula}=>{totalFormulaWeight}=>{isMolecularContains}=>0");
+                totalFormulaWeight = 0;
+            }
             return totalFormulaWeight;
         }
     }
