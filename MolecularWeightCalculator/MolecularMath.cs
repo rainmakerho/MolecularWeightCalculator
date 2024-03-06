@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using NCalc;
+using NCalc.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace MolecularWeightCalculator
 {
@@ -149,30 +148,54 @@ namespace MolecularWeightCalculator
         /// <summary>
         /// calculate the molecular weight of compounds expression
         /// </summary>
-        /// <param name="expression">compounds expression</param>
+        /// <param name="expression">compounds expression(Variable names in expressions must be unique)</param>
         /// <param name="calculateContains">only calculate the molecular weight of compounds with certain chemical elements</param>
         /// <returns></returns>
         public object ComputeMass(string expression, string[] calculateContains = null)
         {
-
-            _logger?.LogDebug($"start Compute:{expression}");
-            var ec = Expression.Compile(expression, false);
-            ParameterExtractionVisitor visitor = new ParameterExtractionVisitor();
-            ec.Accept(visitor);
-            var extractedParameters = visitor.Parameters;
-
-            var e = new Expression(ec);
+            _logger?.LogDebug("start Compute expression:{expression}", expression);
+            HashSet<string> extractedParameters = GetParameters(expression);
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
             foreach (var param in extractedParameters)
             {
                 _logger?.LogDebug(param);
                 double paramValue = CalcMolecularFormulaMass(param, calculateContains);
-                e.Parameters[param] = paramValue;
+                parameters.Add(param, paramValue);
             }
-            var result = e.Evaluate();
-            _logger?.LogDebug($"{expression}=>{result}");
+            var result = Evaluate(expression, parameters);
+            _logger?.LogDebug("end Compute expression:{expression}=>result:{result}", expression, result);
             return result;
         }
 
+        /// <summary>
+        /// Get Parameters from expression
+        /// </summary>
+        /// <param name="expression">expression (Variable names in expressions must be unique)</param>
+        /// <returns></returns>
+        public HashSet<string> GetParameters(string expression)
+        {
+            _logger?.LogDebug("start Parse expression:{expression}", expression);
+            LogicalExpression ec = Expression.Compile(expression, false);
+            ParameterExtractionVisitor visitor = new ParameterExtractionVisitor();
+            ec.Accept(visitor);
+            return visitor.Parameters;
+        }
+
+        public object Evaluate(string expression, Dictionary<string, object> parameters=null)
+        {
+            Expression e = new Expression(expression);
+            if(parameters != null)
+            {
+                foreach (var param in parameters)
+                {
+                    e.Parameters[param.Key] = param.Value;
+                }
+            }
+            
+            var result = e.Evaluate();
+            _logger?.LogDebug("expression:{expression}=>result:{result}", expression, result);
+            return result;
+        }
 
 
         double CalcMolecularFormulaMass(string formula, string[] calculateContains = null)
@@ -208,7 +231,7 @@ namespace MolecularWeightCalculator
 
             }
             _logger?.LogDebug($"{formula}=>{totalFormulaWeight}");
-            if (calculateContains != null && isMolecularContains==false)
+            if (calculateContains != null && calculateContains.Length>0 && isMolecularContains ==false)
             {
                 //does not exist in the calculation list
                 _logger?.LogDebug($"{formula}=>{totalFormulaWeight}=>{isMolecularContains}=>0");
