@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MolecularWeightCalculator",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MolecularWeightCalculator.Console", "MolecularWeightCalculator.Console\MolecularWeightCalculator.Console.csproj", "{62D07151-66B3-4D80-9D44-E8D9FDF2EC4F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MolecularWeightCalculator.Tests", "MolecularWeightCalculator.Tests\MolecularWeightCalculator.Tests.csproj", "{5F504847-79D7-40F3-9880-10930274B147}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{62D07151-66B3-4D80-9D44-E8D9FDF2EC4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62D07151-66B3-4D80-9D44-E8D9FDF2EC4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62D07151-66B3-4D80-9D44-E8D9FDF2EC4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F504847-79D7-40F3-9880-10930274B147}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F504847-79D7-40F3-9880-10930274B147}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F504847-79D7-40F3-9880-10930274B147}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F504847-79D7-40F3-9880-10930274B147}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <VersionPrefix>1.0.4</VersionPrefix>
+	  <VersionPrefix>1.0.5</VersionPrefix>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Copyright></Copyright>
 	  <PackageIcon>icon.png</PackageIcon>
@@ -27,6 +27,10 @@ It allows you to input a chemical formula and computes the total molecular weigh
 		  ### 1.0.4
 
 		  1. Add filtering to only calculate the molecular weight of compounds with certain chemical elements, such as only contain C (Carbon)
+		  ### 1.0.5
+		  1. fix [Provide analytical expressions and obtain parameter information](https://github.com/rainmakerho/MolecularWeightCalculator/issues/1) issue
+
+
 	  </PackageReleaseNotes>
   </PropertyGroup>
 
