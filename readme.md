@@ -181,6 +181,8 @@ H2O
 1. fix [Provide analytical expressions and obtain parameter information](https://github.com/rainmakerho/MolecularWeightCalculator/issues/1) issue
 2. Add MolecularWeightCalculator.Tests.csproj
 
+## Checkmarx Report
+[Checkmarx Report](checkmarxReport.pdf):None High, medium and low risk
 
 ## Contributing
 
