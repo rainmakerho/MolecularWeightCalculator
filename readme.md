@@ -242,6 +242,8 @@ Pow(Days('2023-01-10', '2023/01/4') + 1,3)=>343
 1. fix [Provide analytical expressions and obtain parameter information](https://github.com/rainmakerho/MolecularWeightCalculator/issues/1) issue
 2. Add MolecularWeightCalculator.Tests.csproj
 
+### 25.05.01
+1. [是否可以加入類似Excel提供的Days函式(End Date, Start Day), 計算兩個日期之間的天數? #3](https://github.com/rainmakerho/MolecularWeightCalculator/issues/3)
 
 
 ## Checkmarx Report
