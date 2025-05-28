@@ -60,7 +60,19 @@ DisplayExpressionInfo(exp9, filterMoleculars);
 string expA = "2*CO2 + H2O";
 DisplayExpressionInfo(expA, filterMoleculars);
 
+// Date function test
+Console.WriteLine($"===== Date function test =====");
+string expB = "Days('2023-01-01', '2023/01/10') + 1";
+DisplayExpressionInfo2(expB);
 
+string expC = "Days('2023-01-01 10:10:10', '2023/01/10') + 1";
+DisplayExpressionInfo2(expC);
+
+string expD = "Pow(Days('2023-01-01', '2023/01/10'),2)";
+DisplayExpressionInfo2(expD);
+
+string expE = "Pow(Days('2023-01-10', '2023/01/4') + 1,3)";
+DisplayExpressionInfo2(expE);
 
 
 Console.WriteLine($"Press any key to exit.....");
@@ -87,6 +99,34 @@ void DisplayExpressionInfo(string expression, string filterMoleculars="")
         Console.WriteLine(ex);
     }
     
+    Console.WriteLine(new String('*', 50));
+}
+
+void DisplayExpressionInfo2(string expression)
+{
+    Console.WriteLine($"==={expression}{new String('=', 10)}");
+    try
+    {
+        if (molecularMath == null)
+        {
+            Console.WriteLine("Error: molecularMath service is not available.");
+            return;
+        }
+        var parameters = molecularMath.GetParameters(expression);
+        Console.WriteLine($"==={expression}:Parameters({parameters.Count}),{new String('=', 10)}");
+        foreach (var parameter in parameters)
+        {
+            Console.WriteLine(parameter);
+        }
+        Console.WriteLine(new String('=', 30));
+        var result = molecularMath.Evaluate(expression);
+        Console.WriteLine($"{expression}=>{result}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+
     Console.WriteLine(new String('*', 50));
 }
 
@@ -161,6 +201,27 @@ H2O
 ==============================
 2*CO2 + H2O=>88.018
 **************************************************
+===== Date function test =====
+===Days('2023-01-01', '2023/01/10') + 1==========
+===Days('2023-01-01', '2023/01/10') + 1:Parameters(0),==========
+==============================
+Days('2023-01-01', '2023/01/10') + 1=>-8
+**************************************************
+===Days('2023-01-01 10:10:10', '2023/01/10') + 1==========
+===Days('2023-01-01 10:10:10', '2023/01/10') + 1:Parameters(0),==========
+==============================
+Days('2023-01-01 10:10:10', '2023/01/10') + 1=>-7.5762731481481485
+**************************************************
+===Pow(Days('2023-01-01', '2023/01/10'),2)==========
+===Pow(Days('2023-01-01', '2023/01/10'),2):Parameters(0),==========
+==============================
+Pow(Days('2023-01-01', '2023/01/10'),2)=>81
+**************************************************
+===Pow(Days('2023-01-10', '2023/01/4') + 1,3)==========
+===Pow(Days('2023-01-10', '2023/01/4') + 1,3):Parameters(0),==========
+==============================
+Pow(Days('2023-01-10', '2023/01/4') + 1,3)=>343
+**************************************************
 ```
 
 ## ChangeLog
@@ -180,6 +241,8 @@ H2O
 ### 1.0.5
 1. fix [Provide analytical expressions and obtain parameter information](https://github.com/rainmakerho/MolecularWeightCalculator/issues/1) issue
 2. Add MolecularWeightCalculator.Tests.csproj
+
+
 
 ## Checkmarx Report
 [Checkmarx Report](checkmarxReport.pdf):None High, medium and low risk
