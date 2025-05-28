@@ -181,17 +181,18 @@ namespace MolecularWeightCalculator
             return visitor.Parameters;
         }
 
-        public object Evaluate(string expression, Dictionary<string, object> parameters=null)
+        public object Evaluate(string expression, Dictionary<string, object> parameters = null)
         {
             Expression e = new Expression(expression);
-            if(parameters != null)
+            ExtensionFunctions.RegisterCustomFunctions(e);
+            if (parameters != null)
             {
                 foreach (var param in parameters)
                 {
                     e.Parameters[param.Key] = param.Value;
                 }
             }
-            
+
             var result = e.Evaluate();
             _logger?.LogDebug("expression:{expression}=>result:{result}", expression, result);
             return result;
@@ -231,7 +232,7 @@ namespace MolecularWeightCalculator
 
             }
             _logger?.LogDebug($"{formula}=>{totalFormulaWeight}");
-            if (calculateContains != null && calculateContains.Length>0 && isMolecularContains ==false)
+            if (calculateContains != null && calculateContains.Length > 0 && isMolecularContains == false)
             {
                 //does not exist in the calculation list
                 _logger?.LogDebug($"{formula}=>{totalFormulaWeight}=>{isMolecularContains}=>0");

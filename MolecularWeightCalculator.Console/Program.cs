@@ -18,7 +18,7 @@ var serviceProvider = services.BuildServiceProvider();
 
 var logger = serviceProvider.GetService<ILogger<Program>>();
 logger.LogInformation("Start App");
-var molecularMath =  serviceProvider.GetService<MolecularMath>();
+var molecularMath = serviceProvider.GetService<MolecularMath>();
 string exp1 = "CO2";
 DisplayExpressionInfo(exp1);
 
@@ -56,18 +56,35 @@ DisplayExpressionInfo(exp9, filterMoleculars);
 string expA = "2*CO2 + H2O";
 DisplayExpressionInfo(expA, filterMoleculars);
 
+// Date function test
+Console.WriteLine($"===== Date function test =====");
+string expB = "Days('2023-01-01', '2023/01/10') + 1";
+DisplayExpressionInfo2(expB);
 
+string expC = "Days('2023-01-01 10:10:10', '2023/01/10') + 1";
+DisplayExpressionInfo2(expC);
+
+string expD = "Pow(Days('2023-01-01', '2023/01/10'),2)";
+DisplayExpressionInfo2(expD);
+
+string expE = "Pow(Days('2023-01-10', '2023/01/4') + 1,3)";
+DisplayExpressionInfo2(expE);
 
 
 Console.WriteLine($"Press any key to exit.....");
 Console.ReadKey();
 
-void DisplayExpressionInfo(string expression, string filterMoleculars="")
+void DisplayExpressionInfo(string expression, string filterMoleculars = "")
 {
     Console.WriteLine($"==={expression}, filter Moleculars:({filterMoleculars}){new String('=', 10)}");
     string[] filterMolecularsArray = filterMoleculars.Split(',', StringSplitOptions.RemoveEmptyEntries);
     try
     {
+        if (molecularMath == null)
+        {
+            Console.WriteLine("Error: molecularMath service is not available.");
+            return;
+        }
         var parameters = molecularMath.GetParameters(expression);
         Console.WriteLine($"==={expression}:Parameters({parameters.Count}),{new String('=', 10)}");
         foreach (var parameter in parameters)
@@ -82,6 +99,34 @@ void DisplayExpressionInfo(string expression, string filterMoleculars="")
     {
         Console.WriteLine(ex);
     }
-    
+
+    Console.WriteLine(new String('*', 50));
+}
+
+void DisplayExpressionInfo2(string expression)
+{
+    Console.WriteLine($"==={expression}{new String('=', 10)}");
+    try
+    {
+        if (molecularMath == null)
+        {
+            Console.WriteLine("Error: molecularMath service is not available.");
+            return;
+        }
+        var parameters = molecularMath.GetParameters(expression);
+        Console.WriteLine($"==={expression}:Parameters({parameters.Count}),{new String('=', 10)}");
+        foreach (var parameter in parameters)
+        {
+            Console.WriteLine(parameter);
+        }
+        Console.WriteLine(new String('=', 30));
+        var result = molecularMath.Evaluate(expression);
+        Console.WriteLine($"{expression}=>{result}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex);
+    }
+
     Console.WriteLine(new String('*', 50));
 }
