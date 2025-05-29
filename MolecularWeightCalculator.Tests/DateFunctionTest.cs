@@ -63,4 +63,19 @@ public class DateFunctionTest
         // Assert
         Assert.Equal(343.0, result);
     }
+
+
+    [Fact]
+    public void DaysTwFunction_ValidDates_ReturnsCorrectDays2()
+    {
+        // Arrange
+        string expression = "DaysTw('111/12/31', '111/1/1') + 1";
+
+        // Act
+        var parameters = _molecularMath.GetParameters(expression);
+        var result = _molecularMath.Evaluate(expression);
+
+        // Assert
+        Assert.Equal(365.0, result);
+    }
 }
