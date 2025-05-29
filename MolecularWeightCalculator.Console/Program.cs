@@ -70,6 +70,14 @@ DisplayExpressionInfo2(expD);
 string expE = "Pow(Days('2023-01-10', '2023/01/4') + 1,3)";
 DisplayExpressionInfo2(expE);
 
+Console.WriteLine($"===== 民國年 DaysTW function test =====");
+//民國年 
+string expF = "DaysTW('111/12/31', '111/1/1') + 1";
+DisplayExpressionInfo2(expF);
+
+string expG = "DaysTW('111/12/31', '111-1-1') + 1";
+DisplayExpressionInfo2(expG);
+
 
 Console.WriteLine($"Press any key to exit.....");
 Console.ReadKey();

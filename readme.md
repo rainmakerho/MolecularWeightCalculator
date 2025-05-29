@@ -5,9 +5,9 @@ It allows you to input a chemical formula and computes the total molecular weigh
 
 ## Features
 
--   Calculate the molecular weight of chemical compounds.
--   Support for standard atomic weights of elements.
--   Simple and intuitive DLL for integration into your projects.
+- Calculate the molecular weight of chemical compounds.
+- Support for standard atomic weights of elements.
+- Simple and intuitive DLL for integration into your projects.
 
 ## Installation
 
@@ -74,6 +74,13 @@ DisplayExpressionInfo2(expD);
 string expE = "Pow(Days('2023-01-10', '2023/01/4') + 1,3)";
 DisplayExpressionInfo2(expE);
 
+Console.WriteLine($"===== 民國年 DaysTW function test =====");
+//民國年
+string expF = "DaysTW('111/12/31', '111/1/1') + 1";
+DisplayExpressionInfo2(expF);
+
+string expG = "DaysTW('111/12/31', '111-1-1') + 1";
+DisplayExpressionInfo2(expG);
 
 Console.WriteLine($"Press any key to exit.....");
 Console.ReadKey();
@@ -98,7 +105,7 @@ void DisplayExpressionInfo(string expression, string filterMoleculars="")
     {
         Console.WriteLine(ex);
     }
-    
+
     Console.WriteLine(new String('*', 50));
 }
 
@@ -131,7 +138,9 @@ void DisplayExpressionInfo2(string expression)
 }
 
 ```
+
 Execute Result:
+
 ```
 ===CO2, filter Moleculars:()==========
 ===CO2:Parameters(1),==========
@@ -222,7 +231,22 @@ Pow(Days('2023-01-01', '2023/01/10'),2)=>81
 ==============================
 Pow(Days('2023-01-10', '2023/01/4') + 1,3)=>343
 **************************************************
+
+===== 民國年 DaysTW function test =====
+===DaysTW('111/12/31', '111/1/1') + 1==========
+===DaysTW('111/12/31', '111/1/1') + 1:Parameters(0),==========
+==============================
+DaysTW('111/12/31', '111/1/1') + 1=>365
+**************************************************
+===DaysTW('111/12/31', '111-1-1') + 1==========
+===DaysTW('111/12/31', '111-1-1') + 1:Parameters(0),==========
+==============================
+DaysTW('111/12/31', '111-1-1') + 1=>365
+**************************************************
+
 ```
+
+> String literals must be enclosed in single quotes.
 
 ## ChangeLog
 
@@ -239,14 +263,20 @@ Pow(Days('2023-01-10', '2023/01/4') + 1,3)=>343
 1. Add filtering to only calculate the molecular weight of compounds with certain chemical elements, such as only contain C (Carbon)
 
 ### 1.0.5
+
 1. fix [Provide analytical expressions and obtain parameter information](https://github.com/rainmakerho/MolecularWeightCalculator/issues/1) issue
 2. Add MolecularWeightCalculator.Tests.csproj
 
-### 25.05.01
-1. [是否可以加入類似Excel提供的Days函式(End Date, Start Day), 計算兩個日期之間的天數? #3](https://github.com/rainmakerho/MolecularWeightCalculator/issues/3)
+### 25.5.1
 
+1. [是否可以加入類似 Excel 提供的 Days 函式(End Date, Start Day), 計算兩個日期之間的天數? #3](https://github.com/rainmakerho/MolecularWeightCalculator/issues/3)
+
+### 25.5.2
+
+1. 加入 DaysTW Function，計算 2 個民國年日期差的天數
 
 ## Checkmarx Report
+
 [Checkmarx Report](checkmarxReport.pdf):None High, medium and low risk
 
 ## Contributing
