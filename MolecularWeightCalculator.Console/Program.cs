@@ -78,6 +78,29 @@ DisplayExpressionInfo2(expF);
 string expG = "DaysTW('111/12/31', '111-1-1') + 1";
 DisplayExpressionInfo2(expG);
 
+// issue https://github.com/rainmakerho/MolecularWeightCalculator/issues/6
+string expH = "(A + B) * C";
+var parameters = new Dictionary<string, object>
+{
+    { "A", "1" },
+    { "B", "2" },
+    { "C", "3" }
+};
+var r = molecularMath.Evaluate(expH, parameters);
+Console.WriteLine($"{expH} => {r}"); // 36
+/*
+"1" + "2" results in "12" because string addition concatenates the values.
+"12" * "3": NCalc converts both strings to numbers and multiplies them, so 12 * 3 = 36.
+*/
+
+var parameters2 = new Dictionary<string, object>
+{
+    { "A", 1},
+    { "B", 2 },
+    { "C", "3" }
+};
+var r2 = molecularMath.Evaluate(expH, parameters2);
+Console.WriteLine($"{expH} => {r2}"); // 9
 
 Console.WriteLine($"Press any key to exit.....");
 Console.ReadKey();
