@@ -78,4 +78,31 @@ public class DateFunctionTest
         // Assert
         Assert.Equal(365.0, result);
     }
+
+    [Fact]
+    public void DaysYearFunction_ValidDates_ReturnsCorrectDays()
+    {
+        // Arrange
+        string expression = "DaysYear(2024)";
+
+        // Act
+        var parameters = _molecularMath.GetParameters(expression);
+        var result = _molecularMath.Evaluate(expression);
+
+        // Assert
+        Assert.Equal(366, result);
+    }
+    [Fact]
+    public void DaysYearFunction_ValidDates_ReturnsCorrectDays2()
+    {
+        // Arrange
+        string expression = "DaysYear(2025)";
+
+        // Act
+        var parameters = _molecularMath.GetParameters(expression);
+        var result = _molecularMath.Evaluate(expression);
+
+        // Assert
+        Assert.Equal(365, result);
+    }
 }

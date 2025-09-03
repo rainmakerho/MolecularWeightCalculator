@@ -275,6 +275,10 @@ DaysTW('111/12/31', '111-1-1') + 1=>365
 
 1. 加入 DaysTW Function，計算 2 個民國年日期差的天數
 
+### 25.9.2
+
+1. 加入 DaysYear Function，計算年度天數, 例如: DaysYear(2024)=366, DaysYear(2025)=365
+
 ## Checkmarx Report
 
 [Checkmarx Report](checkmarxReport.pdf):None High, medium and low risk

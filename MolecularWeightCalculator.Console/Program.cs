@@ -79,6 +79,14 @@ string expG = "DaysTW('111/12/31', '111-1-1') + 1";
 DisplayExpressionInfo2(expG);
 
 
+Console.WriteLine($"===== DaysYear function test =====");
+//DaysYear(2024)
+string expH = "DaysYear(2024)";
+DisplayExpressionInfo2(expH);
+//DaysYear(2025)
+string expI = "DaysYear(2025)";
+DisplayExpressionInfo2(expI);
+
 Console.WriteLine($"Press any key to exit.....");
 Console.ReadKey();
 

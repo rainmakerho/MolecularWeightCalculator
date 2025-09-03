@@ -7,8 +7,33 @@ public static class ExtensionFunctions
     {
         RegisterDaysFunction(e);
         RegisterDaysTwFunction(e);
+        RegisterDaysYearFunction(e);
     }
 
+    private static void RegisterDaysYearFunction(Expression e)
+    {
+        e.EvaluateFunction += (name, args) =>
+        {
+            if (name.Equals("DaysYear", StringComparison.OrdinalIgnoreCase))
+            {
+                if (args.Parameters.Length != 1)
+                    throw new ArgumentException("DaysYear function expects 1 parameter.");
+                //year
+                var yearStr = args.Parameters[0].Evaluate().ToString();
+                 
+
+                if (int.TryParse(yearStr, out var year))
+                {
+                    DateTime dec31 = new DateTime(year, 12, 31);
+                    args.Result = dec31.DayOfYear;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid year format for DaysYear function.");
+                }
+            }
+        };
+    }
 
     private static void RegisterDaysFunction(Expression e)
     {
