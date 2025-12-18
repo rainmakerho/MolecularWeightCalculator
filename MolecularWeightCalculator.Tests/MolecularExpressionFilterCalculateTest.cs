@@ -151,4 +151,19 @@ public class MolecularExpressionFilterCalculateTest
         // Assert
         Assert.Equal(44.009, result);
     }
+
+    [Fact]
+    public void NaHCO3_ReturnFilterC()
+    {
+        // Arrange
+        string[] filterArray = { "C" };
+        var molecularMath = new MolecularMath();
+        string expression = "NaHCO3";
+
+        // Act
+        var result = molecularMath.ComputeMass(expression, filterArray);
+
+        // Assert
+        Assert.Equal(84.006, result);
+    }
 }
