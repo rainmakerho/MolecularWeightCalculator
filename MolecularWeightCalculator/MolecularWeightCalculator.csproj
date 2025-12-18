@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <VersionPrefix>25.09.02</VersionPrefix>
+	  <VersionPrefix>25.12.18</VersionPrefix>
 	  <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	  <Copyright></Copyright>
 	  <PackageIcon>icon.png</PackageIcon>
@@ -38,7 +38,8 @@ It allows you to input a chemical formula and computes the total molecular weigh
 		  ### 25.9.2
 
 		  1. 加入 DaysYear Function，計算年度天數, 例如: DaysYear(2024)=366, DaysYear(2025)=365
-
+		  ### 25.12.18
+		  1. 允許過濾 CO2
 	  </PackageReleaseNotes>
   </PropertyGroup>
 

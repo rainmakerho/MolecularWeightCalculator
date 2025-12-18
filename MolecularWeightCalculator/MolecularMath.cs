@@ -158,8 +158,17 @@ namespace MolecularWeightCalculator
             Dictionary<string, object> parameters = new Dictionary<string, object>();
             foreach (var param in extractedParameters)
             {
+                if (calculateContains != null && calculateContains.Length > 0)
+                {
+                    if (!IsParameterAllowed(param, calculateContains))
+                    {
+                        _logger?.LogDebug("set {param} value 0 - not allowed", param);
+                        parameters.Add(param, 0.0);
+                        continue;  // 跳過，不計算
+                    }
+                }
                 _logger?.LogDebug(param);
-                double paramValue = CalcMolecularFormulaMass(param, calculateContains);
+                double paramValue = CalcMolecularFormulaMass(param);
                 parameters.Add(param, paramValue);
             }
             var result = Evaluate(expression, parameters);
@@ -199,20 +208,16 @@ namespace MolecularWeightCalculator
         }
 
 
-        double CalcMolecularFormulaMass(string formula, string[] calculateContains = null)
+        double CalcMolecularFormulaMass(string formula)
         {
             // Match elements and their count using regular expressions
             string pattern = @"([A-Z][a-z]*)(\d*)";
             MatchCollection matches = Regex.Matches(formula, pattern);
             double totalFormulaWeight = 0;
-            bool isMolecularContains = false;
             foreach (Match match in matches)
             {
                 string element = match.Groups[1].Value;
-                if (calculateContains != null && calculateContains.Contains(element))
-                {
-                    isMolecularContains = true;
-                }
+                
                 int count = match.Groups[2].Value == "" ? 1 : int.Parse(match.Groups[2].Value);
                 try
                 {
@@ -232,13 +237,32 @@ namespace MolecularWeightCalculator
 
             }
             _logger?.LogDebug($"{formula}=>{totalFormulaWeight}");
-            if (calculateContains != null && calculateContains.Length > 0 && isMolecularContains == false)
-            {
-                //does not exist in the calculation list
-                _logger?.LogDebug($"{formula}=>{totalFormulaWeight}=>{isMolecularContains}=>0");
-                totalFormulaWeight = 0;
-            }
+            
             return totalFormulaWeight;
+        }
+
+        private bool IsParameterAllowed(string formula, string[] allowedList)
+        {
+            // 模式 1：完整分子式匹配
+            if (allowedList.Contains(formula))
+            {
+                return true;
+            }
+
+            // 模式 2：元素符號匹配
+            string pattern = @"([A-Z][a-z]*)";
+            MatchCollection matches = Regex.Matches(formula, pattern);
+
+            foreach (Match match in matches)
+            {
+                string element = match.Groups[1].Value;
+                if (allowedList.Contains(element))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
