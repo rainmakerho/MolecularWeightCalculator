@@ -63,7 +63,7 @@ public class MolecularExpressionFilterCalculateTest
         var result = molecularMath.ComputeMass(expression, _filterMolecularsArray);
 
         // Assert
-        Assert.Equal(0d, result);
+        Assert.Equal(0.0, result);
     }
 
     [Fact]
@@ -120,5 +120,35 @@ public class MolecularExpressionFilterCalculateTest
 
         // Assert
         Assert.Equal(88.018, result);
+    }
+
+    [Fact]
+    public void Two_CO2_Add_H2O_ReturnFilterCO2()
+    {
+        // Arrange
+        string[] filterArray = { "CO2" };
+        var molecularMath = new MolecularMath();
+        string expression = "2*CO2 + H2O";
+
+        // Act
+        var result = molecularMath.ComputeMass(expression, filterArray);
+
+        // Assert
+        Assert.Equal(88.018, result);
+    }
+
+    [Fact]
+    public void NaCO3_H2O_CO2_ReturnFilterCO2()
+    {
+        // Arrange
+        string[] filterArray = { "CO2" };
+        var molecularMath = new MolecularMath();
+        string expression = "NaCO3 + H2O + CO2";
+
+        // Act
+        var result = molecularMath.ComputeMass(expression, filterArray);
+
+        // Assert
+        Assert.Equal(44.009, result);
     }
 }

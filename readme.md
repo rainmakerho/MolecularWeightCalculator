@@ -279,6 +279,9 @@ DaysTW('111/12/31', '111-1-1') + 1=>365
 
 1. 加入 DaysYear Function，計算年度天數, 例如: DaysYear(2024)=366, DaysYear(2025)=365
 
+### 25.12.18
+		  
+1. 允許過濾 CO2
 ## Checkmarx Report
 
 [Checkmarx Report](checkmarxReport.pdf):None High, medium and low risk
